@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini - Web Developer Portfolio</title>
+    <link rel="icon" href="https://www.svgrepo.com/show/349479/code-computer-programming-web-development.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a1a1f0a1c6.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --bg-color: #0c0a09;
+            --card-color: #1c1917;
+            --text-color: #fafaf9;
+            --muted-text-color: #a8a29e;
+            --border-color: #292524;
+            --btn-bg: #292524;
+            --btn-border: #44403c;
+            --hover-btn-bg: #44403c;
+            --gradient-1: rgba(59, 130, 246, 0.1);
+            --gradient-2: rgba(236, 72, 153, 0.1);
+            --gradient-3: rgba(16, 185, 129, 0.1);
+            --gradient-4: rgba(251, 191, 36, 0.1);
+            --gradient-5: rgba(139, 92, 246, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .gradient-bg {
+            position: relative;
+            z-index: 1;
+        }
+
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 50% 90%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                              linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .hero-image-container {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .projects-grid .card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+        }
+
+        .projects-grid .card:hover {
+            transform: perspective(1000px) scale(1.02);
+        }
+
+        .projects-grid .card .parallax-container {
+            transition: transform 0.1s ease-out;
+        }
+        
+        .nav-link:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-magic {
+            border: 1px solid var(--btn-border);
+            background-color: var(--btn-bg);
+            transition: all 0.3s ease;
+        }
+        .btn-magic:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            transform: scale(1.02);
+            background-color: var(--hover-btn-bg);
+        }
+
+        .hover-glow {
+            transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 0 40px rgba(255, 255, 255, 0.05);
+        }
+
+        .card {
+            background-color: var(--card-color);
+            border-color: var(--border-color);
+        }
+        .text-stone-300 { color: var(--muted-text-color); }
+        .text-stone-400 { color: var(--muted-text-color); }
+        .bg-stone-950 { background-color: var(--bg-color); }
+        .bg-stone-900 { background-color: var(--card-color); }
+        .border-stone-800 { border-color: var(--border-color); }
+        .bg-stone-800 { background-color: var(--btn-bg); }
+        .border-stone-700 { border-color: var(--btn-border); }
+        .group-hover\:bg-gradient-to-br {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .group:hover .group-hover\:bg-gradient-to-br {
+            opacity: 1;
+        }
+        #project-1-gradient { background-image: linear-gradient(to bottom right, var(--gradient-1), transparent); }
+        #project-2-gradient { background-image: linear-gradient(to bottom right, var(--gradient-2), transparent); }
+        #project-3-gradient { background-image: linear-gradient(to bottom right, var(--gradient-3), transparent); }
+        #project-4-gradient { background-image: linear-gradient(to bottom right, var(--gradient-4), transparent); }
+        #project-5-gradient { background-image: linear-gradient(to bottom right, var(--gradient-5), transparent); }
+        .bg-blue-400 { background-color: #60a5fa; }
+    </style>
+</head>
+<body class="gradient-bg">
+
+    <!-- Navbar -->
+    <header class="py-6 sticky top-0 z-50 bg-stone-950/80 backdrop-blur-md transition-colors">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold">Gemini</a>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#about" class="nav-link text-sm text-stone-300 hover:text-white transition">About</a>
+                <a href="#experience" class="nav-link text-sm text-stone-300 hover:text-white transition">Experience</a>
+                <a href="#education" class="nav-link text-sm text-stone-300 hover:text-white transition">Education</a>
+                <a href="#projects" class="nav-link text-sm text-stone-300 hover:text-white transition">Projects</a>
+                <a href="#skills" class="nav-link text-sm text-stone-300 hover:text-white transition">Skills</a>
+                <a href="#contact" class="nav-link text-sm text-stone-300 hover:text-white transition">Contact</a>
+            </nav>
+            <button class="md:hidden text-stone-300">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4">
+        <!-- Hero Section -->
+        <section id="hero" class="h-screen flex items-center justify-center text-center py-20">
+            <div class="max-w-4xl w-full">
+                <div class="hero-image-container mb-8">
+                    <img src="https://avatars.githubusercontent.com/u/110754364?v=4" alt="Profile Picture" class="rounded-full w-24 h-24 mx-auto mb-4 object-cover">
+                </div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">
+                    Hi, I'm <span class="text-blue-400">Gemini.</span>
+                </h1>
+                <p class="text-sm md:text-lg text-stone-400 max-w-2xl mx-auto mb-8">
+                    I'm an AI assistant specializing in web development. I can help you build beautiful and functional websites, from simple designs to complex applications.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#projects" class="btn-magic text-sm px-6 py-3 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700 transition inline-block">
+                        Explore My Projects
+                    </a>
+                    <a href="#contact" class="btn-magic text-sm px-6 py-3 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700 transition inline-block">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">About Me</h2>
+            <div class="max-w-3xl mx-auto text-center">
+                <p class="text-sm md:text-base text-stone-400 mb-4">
+                    I am a full-stack web developer with a passion for creating dynamic and responsive user interfaces. My journey began with a curiosity for how websites work, which quickly evolved into a dedicated pursuit of mastering modern web technologies. I thrive on solving complex problems and am constantly learning new frameworks and tools to improve my craft.
+                </p>
+                <p class="text-sm md:text-base text-stone-400">
+                    I believe in clean code, robust architecture, and a user-centric approach to design. Whether it's building a simple static page or a complex, data-driven application, my goal is always to deliver a high-quality product that is both efficient and delightful to use.
+                </p>
+            </div>
+        </section>
+        
+        <!-- Experience Section -->
+        <section id="experience" class="py-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Experience</h2>
+            <div class="max-w-3xl mx-auto space-y-8">
+                <!-- Job 1 -->
+                <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 hover:hover-glow transition-all">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-xl font-semibold">Senior Frontend Developer</h3>
+                        <span class="text-sm text-stone-400">2021 - Present</span>
+                    </div>
+                    <p class="text-sm text-stone-300 mb-4">Tech Innovations Inc.</p>
+                    <ul class="list-disc list-inside text-sm text-stone-400 space-y-2">
+                        <li>Led the development of a company-wide dashboard, improving data visibility by 40%.</li>
+                        <li>Mentored a team of junior developers, fostering best practices in code quality and collaboration.</li>
+                        <li>Implemented responsive design principles across all major products, enhancing mobile usability.</li>
+                    </ul>
+                </div>
+                <!-- Job 2 -->
+                <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 hover:hover-glow transition-all">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-xl font-semibold">Web Developer</h3>
+                        <span class="text-sm text-stone-400">2018 - 2021</span>
+                    </div>
+                    <p class="text-sm text-stone-300 mb-4">Creative Solutions Co.</p>
+                    <ul class="list-disc list-inside text-sm text-stone-400 space-y-2">
+                        <li>Developed and maintained client websites using HTML, CSS, and JavaScript.</li>
+                        <li>Collaborated with designers to translate mockups into interactive web pages.</li>
+                        <li>Optimized website performance, reducing load times by 25%.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Education</h2>
+            <div class="max-w-3xl mx-auto space-y-8">
+                <!-- Degree 1 -->
+                <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 hover:hover-glow transition-all">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-xl font-semibold">Master of Science in Computer Science</h3>
+                        <span class="text-sm text-stone-400">2016 - 2018</span>
+                    </div>
+                    <p class="text-sm text-stone-300 mb-4">Stanford University</p>
+                    <ul class="list-disc list-inside text-sm text-stone-400 space-y-2">
+                        <li>Specialization in Human-Computer Interaction.</li>
+                        <li>Thesis: "The Role of AI in Personalizing Web Experiences."</li>
+                    </ul>
+                </div>
+                <!-- Degree 2 -->
+                <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 hover:hover-glow transition-all">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-xl font-semibold">Bachelor of Science in Software Engineering</h3>
+                        <span class="text-sm text-stone-400">2012 - 2016</span>
+                    </div>
+                    <p class="text-sm text-stone-300 mb-4">University of California, Berkeley</p>
+                    <ul class="list-disc list-inside text-sm text-stone-400 space-y-2">
+                        <li>Graduated with honors.</li>
+                        <li>Relevant coursework: Data Structures, Algorithms, Database Management.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Projects</h2>
+            <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Project Card 1 -->
+                <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 relative overflow-hidden group hover:hover-glow">
+                    <div id="project-1-gradient" class="absolute inset-0 z-0 group-hover:bg-gradient-to-br"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="parallax-container w-full h-48 rounded-xl overflow-hidden mb-4">
+                            <img src="https://placehold.co/600x400/3b82f6/ffffff?text=E-commerce+Platform" alt="E-commerce Platform" class="w-full h-full object-cover rounded-xl transition-transform duration-100 ease-out will-change-transform">
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">E-commerce Platform</h3>
+                        <p class="text-sm text-stone-400 flex-grow">A full-stack e-commerce site with a secure payment gateway and user authentication.</p>
+                        <div class="flex items-center space-x-2 mt-4">
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">React</span>
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">Node.js</span>
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 relative overflow-hidden group hover:hover-glow">
+                    <div id="project-2-gradient" class="absolute inset-0 z-0 group-hover:bg-gradient-to-br"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="parallax-container w-full h-48 rounded-xl overflow-hidden mb-4">
+                            <img src="https://placehold.co/600x400/ec4899/ffffff?text=Social+Media+App" alt="Social Media App" class="w-full h-full object-cover rounded-xl transition-transform duration-100 ease-out will-change-transform">
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Social Media App</h3>
+                        <p class="text-sm text-stone-400 flex-grow">A social media application with real-time chat, post creation, and user profiles.</p>
+                        <div class="flex items-center space-x-2 mt-4">
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">Vue.js</span>
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">Firebase</span>
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">Realtime DB</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 3 -->
+                <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 relative overflow-hidden group hover:hover-glow">
+                    <div id="project-3-gradient" class="absolute inset-0 z-0 group-hover:bg-gradient-to-br"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="parallax-container w-full h-48 rounded-xl overflow-hidden mb-4">
+                            <img src="https://placehold.co/600x400/10b981/ffffff?text=Portfolio+Builder" alt="Portfolio Builder" class="w-full h-full object-cover rounded-xl transition-transform duration-100 ease-out will-change-transform">
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Portfolio Builder</h3>
+                        <p class="text-sm text-stone-400 flex-grow">A tool to help users quickly create and customize their personal portfolio websites.</p>
+                        <div class="flex items-center space-x-2 mt-4">
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">Angular</span>
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">TypeScript</span>
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 4 -->
+                <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 relative overflow-hidden group hover:hover-glow">
+                    <div id="project-4-gradient" class="absolute inset-0 z-0 group-hover:bg-gradient-to-br"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="parallax-container w-full h-48 rounded-xl overflow-hidden mb-4">
+                            <img src="https://placehold.co/600x400/fcd34d/ffffff?text=Weather+App" alt="Weather App" class="w-full h-full object-cover rounded-xl transition-transform duration-100 ease-out will-change-transform">
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Real-time Weather App</h3>
+                        <p class="text-sm text-stone-400 flex-grow">A responsive weather application that fetches and displays current conditions using a public API.</p>
+                        <div class="flex items-center space-x-2 mt-4">
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">JavaScript</span>
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">APIs</span>
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">CSS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 5 -->
+                <div class="card bg-stone-900 border border-stone-800 rounded-2xl p-6 relative overflow-hidden group hover:hover-glow">
+                    <div id="project-5-gradient" class="absolute inset-0 z-0 group-hover:bg-gradient-to-br"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="parallax-container w-full h-48 rounded-xl overflow-hidden mb-4">
+                            <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Blog+Platform" alt="Blog Platform" class="w-full h-full object-cover rounded-xl transition-transform duration-100 ease-out will-change-transform">
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Custom Blog Platform</h3>
+                        <p class="text-sm text-stone-400 flex-grow">A personal blogging platform with a markdown editor and category filtering.</p>
+                        <div class="flex items-center space-x-2 mt-4">
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">PHP</span>
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">MySQL</span>
+                            <span class="text-xs px-2 py-1 bg-stone-800 text-stone-400 rounded-full">HTML</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">My Skills</h2>
+            <div class="flex justify-center flex-wrap gap-4 max-w-4xl mx-auto">
+                <div class="bg-stone-900 border border-stone-800 rounded-full px-5 py-2 text-sm text-stone-300 transition-transform hover:scale-105 hover:hover-glow">HTML5</div>
+                <div class="bg-stone-900 border border-stone-800 rounded-full px-5 py-2 text-sm text-stone-300 transition-transform hover:scale-105 hover:hover-glow">CSS3</div>
+                <div class="bg-stone-900 border border-stone-800 rounded-full px-5 py-2 text-sm text-stone-300 transition-transform hover:scale-105 hover:hover-glow">JavaScript (ES6+)</div>
+                <div class="bg-stone-900 border border-stone-800 rounded-full px-5 py-2 text-sm text-stone-300 transition-transform hover:scale-105 hover:hover-glow">React</div>
+                <div class="bg-stone-900 border border-stone-800 rounded-full px-5 py-2 text-sm text-stone-300 transition-transform hover:scale-105 hover:hover-glow">Angular</div>
+                <div class="bg-stone-900 border border-stone-800 rounded-full px-5 py-2 text-sm text-stone-300 transition-transform hover:scale-105 hover:hover-glow">Vue.js</div>
+                <div class="bg-stone-900 border border-stone-800 rounded-full px-5 py-2 text-sm text-stone-300 transition-transform hover:scale-105 hover:hover-glow">Node.js</div>
+                <div class="bg-stone-900 border border-stone-800 rounded-full px-5 py-2 text-sm text-stone-300 transition-transform hover:scale-105 hover:hover-glow">Python</div>
+                <div class="bg-stone-900 border border-stone-800 rounded-full px-5 py-2 text-sm text-stone-300 transition-transform hover:scale-105 hover:hover-glow">Tailwind CSS</div>
+                <div class="bg-stone-900 border border-stone-800 rounded-full px-5 py-2 text-sm text-stone-300 transition-transform hover:scale-105 hover:hover-glow">Git & GitHub</div>
+                <div class="bg-stone-900 border border-stone-800 rounded-full px-5 py-2 text-sm text-stone-300 transition-transform hover:scale-105 hover:hover-glow">Figma</div>
+                <div class="bg-stone-900 border border-stone-800 rounded-full px-5 py-2 text-sm text-stone-300 transition-transform hover:scale-105 hover:hover-glow">SQL</div>
+                <div class="bg-stone-900 border border-stone-800 rounded-full px-5 py-2 text-sm text-stone-300 transition-transform hover:scale-105 hover:hover-glow">NoSQL</div>
+                <div class="bg-stone-900 border border-stone-800 rounded-full px-5 py-2 text-sm text-stone-300 transition-transform hover:scale-105 hover:hover-glow">APIs</div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Let's Connect</h2>
+            <p class="text-center text-stone-400 mb-8 max-w-lg mx-auto">
+                I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out.
+            </p>
+            <div class="flex justify-center">
+                <a href="mailto:contact@gemini.com" class="btn-magic text-sm px-6 py-3 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700 transition inline-block">
+                    Send a Message
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-sm text-stone-500">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="https://github.com/yourusername" target="_blank" class="text-2xl text-stone-500 hover:text-white transition-colors"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-2xl text-stone-500 hover:text-white transition-colors"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/yourhandle" target="_blank" class="text-2xl text-stone-500 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/yourhandle" target="_blank" class="text-2xl text-stone-500 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:contact@gemini.com" class="text-2xl text-stone-500 hover:text-white transition-colors"><i class="fas fa-envelope"></i></a>
+        </div>
+        &copy; 2024 Gemini. All rights reserved.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.projects-grid .card');
+            cards.forEach(card => {
+                const img = card.querySelector('.parallax-container img');
+                
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((centerY - y) / centerY) * 5;
+                    const rotateY = ((x - centerX) / centerX) * 5;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    
+                    const imgTranslateX = ((x - centerX) / centerX) * 10;
+                    const imgTranslateY = ((y - centerY) / centerY) * 10;
+                    img.style.transform = `translate(${imgTranslateX}px, ${imgTranslateY}px) scale(1.05)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+                    img.style.transform = `translate(0px, 0px) scale(1)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
