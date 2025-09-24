@@ -1,0 +1,53 @@
+25
+aws 4hr
+docker 2hr
+Linux 4 hr
+
+26
+docker 2 hr
+Linux 4 hr
+aws 4 hr
+
+27
+Linux 4 hr
+aws 4 hr
+Kubernetes 2 hr
+
+28
+aws 5 hr
+Kubernetes 5hr
+
+29
+Kubernetes 3 hr
+aws 2 hr
+ansible and terraform 5hr
+
+30
+Ansible 5 hr
+OS 2 hr
+Networking 3 hr
+
+1
+Ansible 3 hr
+monitoring 4 hr
+git 3 hr
+
+2
+monitoring 5 hr
+Projects 5 hr
+
+3 
+Projects 10 hr
+
+4 
+Projects 10 hr
+
+5 
+Projects 10 hr 
+LinkedIn profile update
+Naukri Profile 
+GitHub profile
+Portfolio website host
+
+6th start applying
+
