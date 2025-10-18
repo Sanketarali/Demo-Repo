@@ -1,0 +1,30 @@
+eksctl create cluster --name=sanketarali-eks \
+                      --region=eu-north-1 \
+                      --zones=eu-north-1a,-north-1b \
+                      --version=1.30 \
+                      --without-nodegroup
+
+
+eksctl utils associate-iam-oidc-provider \
+    --region eu-north-1 \
+    --cluster sanketarali-eks \
+    --approve
+
+
+
+eksctl create nodegroup --cluster=sanketarali-eks \
+                       --region=eu-north-1 \
+                       --name=node2 \
+                       --node-type=c7i-flex.large \
+                       --nodes=3 \
+                       --nodes-min=2 \
+                       --nodes-max=4 \
+                       --node-volume-size=20 \
+                       --ssh-access \
+                       --ssh-public-key=ansible-server \
+                       --managed \
+                       --asg-access \
+                       --external-dns-access \
+                       --full-ecr-access \
+                       --appmesh-access \
+                       --alb-ingress-access
