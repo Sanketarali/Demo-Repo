@@ -1,0 +1,30 @@
+1. Create one private git repo and generate the token for that and then clone that repo and paste the code file and push it to the GitHub
+
+2. Create 3 vms one for SonarQube and one for nexus and one for jenkins  and we have to some ports for the security groups 
+
+3. connect all these vms from the mobaxterm
+
+4. Install the docker , Jenkins , and java on all the vms and by default running the docker commands are available only to the root user , so here we have to add the ubuntu user to the docker group , do these in all the vms 
+
+5. configure the Jenkins and install the required plugins , for this refer the kastro kiran plugins and restart the Jenkins server 
+
+6. we have install the SonarQube and the nexus by using the docker and the docker command for the nexus is sudo docker run -d -p 8081:8081 sonatype/nexus3 and access the nexus by using the       public ip and the port 8081  and for the SonarQube the docker command is sudo docker run -d -p 9000:9000 SonarQube:lts-community and access the SonarQube 
+
+7. configure the nexus , where first we have to signin into the nexus and the username is admin and the password is stored in some location and that location will be there on the UI and copy that password location and go inside the docker nexus container and type ls and go to sonatype folder and then go to nexus3 and then type cat admin.password and copy the password and setup the new password for the nexus
+
+8. login to the SonarQube and the username and the password is admin and admin and setup the new password 
+
+9. create the token in the SonarQube and copy that 
+
+10. Configure the installed plugins in the Jenkins for this refer Kastro kiran BMS Video
+
+12. Install the trivy on the vm and the website to install the trivy is https://trivy.dev/v0.18.3/installation/
+
+11. Create the Pipeline and for this please refer the devops shack video and the time stamp is already given that is ci cd pipeline 
+
+
+12. Create the minikube cluster 
+
+13. deploy the app into the k8s cluster by using the Jenkins pipeline
+
+14. Setup the monitoring part and install the Prometheus stack in the vm , use the single vm only 
